@@ -1,0 +1,6 @@
+{
+  "name": "Mr Dương - KIỂM TRA ONLINE",
+  "description": "Hệ thống kiểm tra trắc nghiệm online dành cho học sinh Khối 10 Trường THPT Thanh Hòa",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
