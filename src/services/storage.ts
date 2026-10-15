@@ -50,7 +50,48 @@ export const storageService = {
   initialize(): void {
     if (!localStorage.getItem(STORAGE_KEYS.USERS)) {
       setStoredItem(STORAGE_KEYS.USERS, INITIAL_USERS);
+    } else {
+      const storedUsers = getStoredItem<User[]>(STORAGE_KEYS.USERS, []);
+      const updatedUsers = storedUsers.map((u) => {
+        if (u.username.toUpperCase() === 'ADMIN') {
+          return {
+            ...u,
+            fullName: 'Thầy Nguyễn Tiến Dương',
+            teacherRole: 'super_admin' as const,
+            permissions: {
+              canManageQuestions: true,
+              canCreateExams: true,
+              canViewResults: true,
+              canManageStudents: true,
+              canManageTeachers: true,
+            },
+          };
+        }
+        return u;
+      });
+
+      const existingUsernames = new Set(updatedUsers.map((u) => u.username.toUpperCase()));
+      const missingTeachers = INITIAL_USERS.filter(
+        (u) => u.role === 'teacher' && !existingUsernames.has(u.username.toUpperCase())
+      );
+      setStoredItem(STORAGE_KEYS.USERS, [...updatedUsers, ...missingTeachers]);
     }
+
+    // Sync current logged in user if admin
+    const currUser = getStoredItem<User | null>(STORAGE_KEYS.CURRENT_USER, null);
+    if (currUser && currUser.username.toUpperCase() === 'ADMIN') {
+      currUser.fullName = 'Thầy Nguyễn Tiến Dương';
+      currUser.teacherRole = 'super_admin';
+      currUser.permissions = {
+        canManageQuestions: true,
+        canCreateExams: true,
+        canViewResults: true,
+        canManageStudents: true,
+        canManageTeachers: true,
+      };
+      setStoredItem(STORAGE_KEYS.CURRENT_USER, currUser);
+    }
+
     if (!localStorage.getItem(STORAGE_KEYS.CLASSES)) {
       setStoredItem(STORAGE_KEYS.CLASSES, INITIAL_CLASSES);
     }
@@ -166,6 +207,52 @@ export const storageService = {
     currentUsers.forEach((u) => map.set(u.username.toUpperCase(), u));
     newUsers.forEach((u) => map.set(u.username.toUpperCase(), u));
     setStoredItem(STORAGE_KEYS.USERS, Array.from(map.values()));
+  },
+
+  // --- Teachers & Staff Permissions ---
+  getTeachers(): User[] {
+    return this.getUsers().filter((u) => u.role === 'teacher');
+  },
+
+  saveTeacher(teacher: User): void {
+    teacher.role = 'teacher';
+    if (!teacher.permissions) {
+      teacher.permissions = {
+        canManageQuestions: true,
+        canCreateExams: true,
+        canViewResults: true,
+        canManageStudents: false,
+        canManageTeachers: false,
+      };
+    }
+    this.saveUser(teacher);
+  },
+
+  deleteTeacher(teacherId: string): void {
+    // Protect primary super admin from deletion
+    if (teacherId === 'u-teacher-1') {
+      return;
+    }
+    this.deleteUser(teacherId);
+  },
+
+  toggleTeacherPermission(
+    teacherId: string,
+    permissionKey: keyof NonNullable<User['permissions']>
+  ): void {
+    const teacher = this.getUserById(teacherId);
+    if (!teacher) return;
+    if (!teacher.permissions) {
+      teacher.permissions = {
+        canManageQuestions: true,
+        canCreateExams: true,
+        canViewResults: true,
+        canManageStudents: false,
+        canManageTeachers: false,
+      };
+    }
+    teacher.permissions[permissionKey] = !teacher.permissions[permissionKey];
+    this.saveUser(teacher);
   },
 
   // --- Classes ---

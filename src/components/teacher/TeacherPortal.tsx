@@ -20,6 +20,8 @@ import { StudentsManagement } from './StudentsManagement';
 import { ResultsManagement } from './ResultsManagement';
 import { SettingsView } from './SettingsView';
 import { AutoExamModal } from './AutoExamModal';
+import { TeacherPermissionManagement } from './TeacherPermissionManagement';
+import { ShieldCheck } from 'lucide-react';
 
 interface TeacherPortalProps {
   currentUser: User;
@@ -32,6 +34,7 @@ export type TeacherTab =
   | 'questions'
   | 'students'
   | 'results'
+  | 'teachers'
   | 'settings';
 
 export const TeacherPortal: React.FC<TeacherPortalProps> = ({ currentUser, onRefreshUser }) => {
@@ -46,6 +49,7 @@ export const TeacherPortal: React.FC<TeacherPortalProps> = ({ currentUser, onRef
     { id: 'questions', label: 'Ngân hàng câu hỏi', icon: BookOpen },
     { id: 'students', label: 'Học sinh & Lớp học', icon: Users },
     { id: 'results', label: 'Kết quả & Thống kê', icon: Award },
+    { id: 'teachers', label: 'Phân quyền & Giáo viên', icon: ShieldCheck },
     { id: 'settings', label: 'Cài đặt hệ thống', icon: Settings },
   ];
 
@@ -160,6 +164,8 @@ export const TeacherPortal: React.FC<TeacherPortalProps> = ({ currentUser, onRef
         {activeTab === 'results' && (
           <ResultsManagement initialExamId={targetExamIdForResults} />
         )}
+
+        {activeTab === 'teachers' && <TeacherPermissionManagement />}
 
         {activeTab === 'settings' && (
           <SettingsView

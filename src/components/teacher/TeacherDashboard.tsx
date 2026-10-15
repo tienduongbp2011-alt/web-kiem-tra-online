@@ -13,6 +13,7 @@ import {
   Calendar,
   Clock,
   School,
+  ShieldCheck,
 } from 'lucide-react';
 import { storageService } from '../../services/storage';
 
@@ -27,6 +28,7 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
   onOpenAutoExam,
   onViewResults,
 }) => {
+  const currentUser = storageService.getCurrentUser();
   const users = storageService.getUsers();
   const exams = storageService.getExams();
   const questions = storageService.getQuestions();
@@ -81,7 +83,7 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
             Bảng Điều Khiển Quản Trị – THPT Thanh Hòa
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-            Chào mừng Thầy Nguyễn Văn Dương
+            Chào mừng {currentUser?.fullName || 'Thầy Nguyễn Tiến Dương'}
           </h1>
           <p className="text-blue-200 text-sm max-w-xl">
             Hệ thống tổ chức thi, kiểm tra trắc nghiệm online và thống kê kết quả học tập cho học sinh Khối 10 năm học 2026–2027.
@@ -96,6 +98,14 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
           >
             <Sparkles className="w-4 h-4" />
             <span>TẠO ĐỀ TỰ ĐỘNG</span>
+          </button>
+
+          <button
+            onClick={() => onNavigateTab('teachers')}
+            className="flex items-center gap-2 px-4 py-3 bg-white/10 hover:bg-white/20 active:scale-95 text-white font-bold text-sm rounded-xl border border-white/20 transition-all cursor-pointer"
+          >
+            <ShieldCheck className="w-4 h-4 text-amber-300" />
+            <span>PHÂN QUYỀN GIÁO VIÊN</span>
           </button>
 
           <button

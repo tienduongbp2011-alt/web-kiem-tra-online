@@ -56,18 +56,43 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
 
   return (
     <div className="min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center py-8 px-4 sm:px-6 lg:px-8 bg-slate-50">
-      <div className="max-w-md w-full space-y-6">
-        {/* School Header Badge */}
-        <div className="text-center space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-[#0D47A1] rounded-full text-xs font-semibold tracking-wide uppercase">
-            <School className="w-4 h-4" /> Trường THPT Thanh Hòa – Bình Phước
+      <div className="max-w-xl w-full space-y-5">
+        {/* Official School Poster / Exam Banner */}
+        <div className="bg-gradient-to-br from-[#0D47A1] via-blue-900 to-[#0A3880] rounded-2xl p-5 sm:p-6 text-white shadow-lg border-2 border-amber-400/40 relative overflow-hidden">
+          {/* Decorative background glow */}
+          <div className="absolute -right-8 -bottom-8 w-36 h-36 bg-[#FF8A00]/15 rounded-full blur-2xl pointer-events-none" />
+          <div className="absolute -left-8 -top-8 w-36 h-36 bg-blue-400/20 rounded-full blur-2xl pointer-events-none" />
+
+          {/* Department & School Header */}
+          <div className="text-center relative z-10 space-y-1">
+            <div className="text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-amber-300">
+              SỞ GIÁO DỤC VÀ ĐÀO TẠO TỈNH ĐỒNG NAI
+            </div>
+            <div className="text-sm sm:text-base font-extrabold tracking-wide uppercase text-white flex items-center justify-center gap-2">
+              <School className="w-4 h-4 text-amber-400" />
+              <span>TRƯỜNG THPT THANH HÒA – ĐỒNG NAI</span>
+            </div>
+            <div className="w-24 h-0.5 bg-amber-400/60 mx-auto my-2 rounded-full" />
+            <h1 className="text-xl sm:text-2xl font-black text-white tracking-tight uppercase">
+              CỔNG DỰ THI TRẮC NGHIỆM TRỰC TUYẾN
+            </h1>
+            <p className="text-xs sm:text-sm font-semibold text-blue-200">
+              Mr Dương - KIỂM TRA ONLINE – Năm học 2026–2027
+            </p>
+
+            {/* Poster Meta Badges */}
+            <div className="pt-2 flex flex-wrap items-center justify-center gap-2 text-[11px]">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white/15 border border-white/20 text-white font-medium">
+                <GraduationCap className="w-3.5 h-3.5 text-amber-300" /> Dành cho Khối 10
+              </span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500/25 border border-amber-400/40 text-amber-200 font-bold">
+                <Sparkles className="w-3.5 h-3.5 text-amber-400" /> GDPT 2018
+              </span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white/15 border border-white/20 text-white font-medium">
+                Phụ trách: Thầy Nguyễn Tiến Dương
+              </span>
+            </div>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0D47A1] uppercase tracking-tight">
-            DỰ THI TRẮC NGHIỆM ONLINE
-          </h1>
-          <p className="text-sm font-medium text-slate-600">
-            Mr Dương - KIỂM TRA ONLINE – Năm học 2026–2027
-          </p>
         </div>
 
         {/* Role Selection Tabs */}
@@ -171,7 +196,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
                 />
                 <span className="font-medium text-xs sm:text-sm">Hiển thị mật khẩu</span>
               </label>
-              <span className="text-xs text-slate-500">THPT Thanh Hòa</span>
+              <span className="text-xs text-slate-500">THPT Thanh Hòa – Đồng Nai</span>
             </div>
 
             {/* Submit Button */}
@@ -226,8 +251,8 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
                 onClick={() => handleQuickFill('admin', 'password123', 'teacher')}
                 className="p-2 text-left bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-md transition-colors"
               >
-                <div className="font-bold text-[#FF8A00]">admin (Giáo viên)</div>
-                <div className="text-slate-600 text-[11px]">Thầy Nguyễn Văn Dương</div>
+                <div className="font-bold text-[#FF8A00]">admin (Quản trị viên)</div>
+                <div className="text-slate-600 text-[11px]">Thầy Nguyễn Tiến Dương</div>
               </button>
             </div>
             <p className="text-[11px] text-slate-400 mt-2 text-center">
@@ -238,7 +263,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
 
         {/* Footer info */}
         <div className="text-center text-xs text-slate-500">
-          Hệ thống kiểm tra trực tuyến © 2026–2027 – Trường THPT Thanh Hòa
+          Hệ thống kiểm tra trực tuyến © 2026–2027 – Trường THPT Thanh Hòa – Tỉnh Đồng Nai
         </div>
       </div>
     </div>

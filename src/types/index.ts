@@ -1,5 +1,15 @@
 export type Role = 'student' | 'teacher';
 
+export type TeacherRoleLevel = 'super_admin' | 'admin' | 'subject_teacher';
+
+export interface TeacherPermissions {
+  canManageQuestions: boolean; // Soạn & Quản lý ngân hàng câu hỏi
+  canCreateExams: boolean; // Tạo đề thi & Mở phòng kiểm tra
+  canViewResults: boolean; // Xem kết quả & Xuất file Excel
+  canManageStudents: boolean; // Quản lý danh sách học sinh
+  canManageTeachers: boolean; // Phân quyền quản trị cho giáo viên khác
+}
+
 export type QuestionType = 'single_choice' | 'true_false' | 'short_answer';
 
 export type DifficultyLevel = 'nhan_biet' | 'thong_hieu' | 'van_dung' | 'van_dung_cao';
@@ -13,6 +23,12 @@ export interface User {
   password?: string;
   status: 'active' | 'locked';
   createdAt: string;
+  // Extended fields for teachers & administrative permission
+  teacherRole?: TeacherRoleLevel;
+  subject?: string; // Môn phụ trách: 'Toán', 'Vật lí', 'Hóa học', 'Sinh học', 'Tin học', 'Tiếng Anh', 'Tất cả'
+  permissions?: TeacherPermissions;
+  email?: string;
+  phone?: string;
 }
 
 export interface TrueFalseSubItem {

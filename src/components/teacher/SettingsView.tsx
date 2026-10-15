@@ -85,19 +85,19 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onDataReset }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
           <div>
             <label className="text-xs text-slate-500 block mb-0.5">Tên trường học:</label>
-            <div className="font-bold text-slate-800">Trường THPT Thanh Hòa</div>
+            <div className="font-bold text-slate-800">Trường THPT Thanh Hòa – Tỉnh Đồng Nai</div>
           </div>
           <div>
-            <label className="text-xs text-slate-500 block mb-0.5">Năm học:</label>
-            <div className="font-bold text-slate-800">2026 – 2027</div>
+            <label className="text-xs text-slate-500 block mb-0.5">Cơ quan quản lý:</label>
+            <div className="font-bold text-slate-800">Sở GD&ĐT Tỉnh Đồng Nai</div>
           </div>
           <div>
             <label className="text-xs text-slate-500 block mb-0.5">Khối áp dụng:</label>
-            <div className="font-bold text-slate-800">Khối 10 (Chương trình GDPT mới)</div>
+            <div className="font-bold text-slate-800">Khối 10 (Chương trình GDPT mới 2018)</div>
           </div>
           <div>
-            <label className="text-xs text-slate-500 block mb-0.5">Giáo viên phụ trách:</label>
-            <div className="font-bold text-slate-800">Thầy Nguyễn Văn Dương</div>
+            <label className="text-xs text-slate-500 block mb-0.5">Giáo viên Quản trị hệ thống:</label>
+            <div className="font-bold text-slate-800">Thầy Nguyễn Tiến Dương (Super Admin)</div>
           </div>
         </div>
       </div>

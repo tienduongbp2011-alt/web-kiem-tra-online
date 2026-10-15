@@ -22,7 +22,7 @@ export const Header: React.FC<HeaderProps> = ({ currentUser, onLogout, onNavigat
           </div>
           <div>
             <div className="text-xs uppercase tracking-wider text-blue-200 font-medium">
-              TRƯỜNG THPT THANH HÒA
+              TRƯỜNG THPT THANH HÒA – ĐỒNG NAI
             </div>
             <div className="text-lg sm:text-xl font-bold tracking-tight text-white flex items-center gap-2">
               <span>Mr Dương</span>
@@ -64,7 +64,7 @@ export const Header: React.FC<HeaderProps> = ({ currentUser, onLogout, onNavigat
           <div className="text-xs sm:text-sm text-blue-100 font-medium flex items-center gap-1.5">
             <BookOpen className="w-4 h-4 text-[#FF8A00]" />
             <span className="hidden md:inline">Hệ thống khảo thí trực tuyến Khối 10</span>
-            <span className="md:hidden">THPT Thanh Hòa</span>
+            <span className="md:hidden">THPT Thanh Hòa – Đồng Nai</span>
           </div>
         )}
       </div>
